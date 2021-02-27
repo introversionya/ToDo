@@ -315,6 +315,7 @@ body {
   height: 340px
 }
 .todo__input {
+  font-family: 'Akaya Telivigala',cursive;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
