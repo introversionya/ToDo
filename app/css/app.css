@@ -324,7 +324,7 @@ body {
   padding: 3px 7px;
   border: 1px solid #ff9cac;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   font-size: 16px;
   -webkit-transition: .5s;
   -o-transition: .5s;
@@ -332,6 +332,21 @@ body {
 }
 .todo__input:hover {
   background: #ffebcd
+}
+.todo__input::-webkit-input-placeholder {
+  opacity: .5
+}
+.todo__input::-moz-placeholder {
+  opacity: .5
+}
+.todo__input:-ms-input-placeholder {
+  opacity: .5
+}
+.todo__input::-ms-input-placeholder {
+  opacity: .5
+}
+.todo__input::placeholder {
+  opacity: .5
 }
 .todo__btn {
   cursor: pointer;
@@ -363,6 +378,7 @@ body {
   width: 100%
 }
 .todo__tasks-list li {
+  font-size: inherit;
   word-break: break-all;
   display: -webkit-box;
   display: -ms-flexbox;

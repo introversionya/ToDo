@@ -77,11 +77,14 @@
   padding: 3px 7px;
   border: 1px solid #ff9cac;
   border-radius: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   font-size: 16px;
   transition: .5s;
   &:hover {
     background: blanchedalmond;
+  }
+  &::placeholder {
+    opacity: 0.5;
   }
 }
 
@@ -107,6 +110,7 @@
   list-style: none;
   width: 100%;
   li {
+    font-size: inherit;
     word-break:break-all;
     display: flex;
     align-items: flex-start;
