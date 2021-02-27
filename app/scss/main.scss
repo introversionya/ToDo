@@ -49,10 +49,9 @@
 }
 
 .todo__app {
+  overflow: hidden;
   padding: 10px;
-  width: 450px;
-  height: 450px;
-  border: 1px solid black;
+  border: 1px solid #ff9cac;
   border-radius: 10px;
 }
 
@@ -68,6 +67,7 @@
 
 .todo__tasks {
   overflow-y: auto;
+  padding-right: 10px;
   height: 340px;
 }
 
@@ -75,10 +75,14 @@
   display: flex;
   flex-grow: 1;
   padding: 3px 7px;
-  border: 1px solid gray;
+  border: 1px solid #ff9cac;
   border-radius: 5px;
   margin-right: 5px;
   font-size: 16px;
+  transition: .5s;
+  &:hover {
+    background: blanchedalmond;
+  }
 }
 
 .todo__btn {
@@ -87,7 +91,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid #ff9cac;
   border-radius: 5px;
   font-size: 16px;
   transition: all linear .3s;
@@ -100,12 +104,12 @@
 .todo__tasks-list {
   padding: 0;
   margin: 0;
+  list-style: none;
+  width: 100%;
   li {
+    word-break:break-all;
     display: flex;
-    align-items: center;
-    max-width: 100%;
-    padding-right: 5px;
-    list-style: none;
+    align-items: flex-start;
     margin-bottom: 15px;
     position: relative;
     img {
@@ -117,7 +121,7 @@
       position: absolute;
       display: block;
       content: "";
-      bottom: 0;
+      bottom: -8px;
       left: 0;
       width: 100%;
       height: 1px;

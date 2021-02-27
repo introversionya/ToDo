@@ -56,15 +56,6 @@ body {
   font-size: 20px;
 }
 
-// Класс для авто дефисов при резайсе окна (не работает на движке blink)
-.text-wrap {
-  word-wrap: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-}
-
 // Стилизация scroll bar
 ::-webkit-scrollbar {
   width: 4px; /* ширина для вертикального скролла */
@@ -76,7 +67,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #000000;
   border-radius: 9em;
-  // box-shadow: inset 1px 1px 10px #f3faf7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
