@@ -1,14 +1,153 @@
 // Подключаем шрифты
-@import 'fonts';
+@import "fonts";
 
 // Подключаем normalize.css https://github.com/necolas/normalize.css
-@import 'normalize';
+@import "normalize";
 
 // Подключаем общие стили для всего проекта
-@import 'config';
+@import "config";
 
-// Подключаем контейнер 
-@import 'container';
+// Подключаем контейнер
+@import "container";
 
 /*! Основные стили */
+.header {
+  box-shadow: 0px 1px #a9a9a9;
+  background: rgb(255, 156, 172);
+}
 
+.header__inner {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    line-height: 0;
+  }
+  img {
+    margin-left: 5px;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fdebeb;
+  height: calc(100vh - 96px);
+}
+
+.todo {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.todo__app {
+  padding: 10px;
+  width: 450px;
+  height: 450px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.todo__title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.todo__add-task {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.todo__tasks {
+  overflow-y: auto;
+  height: 340px;
+}
+
+.todo__input {
+  display: flex;
+  flex-grow: 1;
+  padding: 3px 7px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.todo__btn {
+  cursor: pointer;
+  background-color: #d8d8d8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all linear .3s;
+  &:hover {
+    border: 1px solid rgb(0, 0, 0);
+    background-color: #ff9cac;
+  }
+}
+
+.todo__tasks-list {
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    padding-right: 5px;
+    list-style: none;
+    margin-bottom: 15px;
+    position: relative;
+    img {
+      margin-right: 5px;
+      width: 25px;
+      height: 25px;
+    }
+    &::after {
+      position: absolute;
+      display: block;
+      content: "";
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #ff9cac;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.todo__tasks-list li:last-child::after {
+  display: none;
+}
+
+.footer {
+  user-select: none;
+  background: darkgrey;
+}
+
+.copyright {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+}
+
+.priority {
+  font-weight: 600;
+}
