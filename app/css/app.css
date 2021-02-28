@@ -272,20 +272,11 @@ body {
   height: 25px
 }
 .main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   background: #fdebeb;
-  height: calc(100vh - 96px)
+  min-height: calc(100vh - 55px)
 }
 .todo {
-  padding: 50px 0;
+  padding: 50px 115px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -294,7 +285,7 @@ body {
   justify-content: center
 }
 .todo__app {
-  overflow: hidden;
+  min-width: 1000px;
   padding: 10px;
   border: 1px solid #ff9cac;
   border-radius: 10px
@@ -315,7 +306,6 @@ body {
   height: 340px
 }
 .todo__input {
-  font-family: 'Akaya Telivigala',cursive;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -349,7 +339,7 @@ body {
 .todo__input::placeholder {
   opacity: .5
 }
-.todo__btn {
+.btn {
   cursor: pointer;
   background-color: #d8d8d8;
   display: -webkit-box;
@@ -368,18 +358,16 @@ body {
   -o-transition: all linear .3s;
   transition: all linear .3s
 }
-.todo__btn:hover {
+.btn:hover {
   border: 1px solid #000;
   background-color: #ff9cac
 }
 .todo__tasks-list {
   padding: 0;
   margin: 0;
-  list-style: none;
-  width: 100%
+  list-style: none
 }
 .todo__tasks-list li {
-  font-size: inherit;
   word-break: break-all;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -387,10 +375,16 @@ body {
   -webkit-box-align: start;
   -ms-flex-align: start;
   align-items: flex-start;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin-bottom: 15px;
   position: relative
 }
 .todo__tasks-list li img {
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
   margin-right: 5px;
   width: 25px;
   height: 25px
@@ -411,7 +405,30 @@ body {
 .todo__tasks-list li:last-child::after {
   display: none
 }
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 25px
+}
+.wrapper:last-child {
+  margin-right: 0
+}
+.btn-operation {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin-right: 10px
+}
+.btn-operation:last-child {
+  margin-right: 0
+}
 .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
