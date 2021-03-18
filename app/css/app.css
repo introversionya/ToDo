@@ -198,7 +198,14 @@ body {
   min-width: 320px;
   position: relative;
   font-family: 'Akaya Telivigala',cursive;
-  font-size: 20px
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
 }
 ::-webkit-scrollbar {
   width: 4px;
@@ -246,37 +253,64 @@ body {
   background: #ff9cac
 }
 .header__inner {
+  position: relative;
+  padding: 7px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  padding: 15px 0;
-  display: flex;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center
+  align-items: center
 }
 .header__inner span {
-  line-height: 0
+  line-height: 100%
 }
 .header__inner img {
   margin-left: 5px;
   width: 25px;
   height: 25px
 }
+.events-count {
+  position: absolute;
+  top: calc(50% - 13px);
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}
+.events-count p {
+  margin: 0;
+  margin-right: 7px
+}
+.header__wrapper-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 auto
+}
+.header__info {
+  position: absolute;
+  top: calc(50% - 13px);
+  right: 0;
+  padding: 3px;
+  max-width: 350px;
+  font-size: 16px
+}
 .main {
   background: #fdebeb;
-  min-height: calc(100vh - 55px)
+  min-height: calc(100vh - 55px);
+  -webkit-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s
 }
 .todo {
-  padding: 50px 115px;
+  padding: 50px 220px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,7 +319,7 @@ body {
   justify-content: center
 }
 .todo__app {
-  min-width: 1000px;
+  min-width: 768px;
   padding: 10px;
   border: 1px solid #ff9cac;
   border-radius: 10px
@@ -306,6 +340,7 @@ body {
   height: 340px
 }
 .todo__input {
+  overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -317,12 +352,16 @@ body {
   border-radius: 5px;
   margin-right: 10px;
   font-size: 16px;
-  -webkit-transition: .5s;
-  -o-transition: .5s;
-  transition: .5s
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s
 }
+.todo__input:active,
+.todo__input:focus,
 .todo__input:hover {
-  background: #ffebcd
+  background: #ffebcd;
+  -webkit-transform: scale(1.01) perspective(1px);
+  transform: scale(1.01) perspective(1px)
 }
 .todo__input::-webkit-input-placeholder {
   opacity: .5
@@ -340,6 +379,10 @@ body {
   opacity: .5
 }
 .btn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   cursor: pointer;
   background-color: #d8d8d8;
   display: -webkit-box;
@@ -358,8 +401,7 @@ body {
   -o-transition: all linear .3s;
   transition: all linear .3s
 }
-.btn:hover {
-  border: 1px solid #000;
+.btn:hover:not([disabled=disabled]) {
   background-color: #ff9cac
 }
 .todo__tasks-list {
@@ -368,7 +410,13 @@ body {
   list-style: none
 }
 .todo__tasks-list li {
-  word-break: break-all;
+  padding: 7px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -382,6 +430,10 @@ body {
   position: relative
 }
 .todo__tasks-list li img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   display: block;
   -o-object-fit: cover;
   object-fit: cover;
@@ -405,14 +457,62 @@ body {
 .todo__tasks-list li:last-child::after {
   display: none
 }
+.todo__tasks-list:hover li::after {
+  display: none
+}
+.todo__tasks-list li:hover {
+  border: 1px solid #ff9cac;
+  border-radius: 5px;
+  background: #fff!important;
+  cursor: -webkit-grab;
+  cursor: grab
+}
+.complited {
+  text-decoration: line-through;
+  -webkit-text-decoration-color: red;
+  text-decoration-color: red
+}
 .wrapper {
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 25px
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  margin-right: 25px;
+  line-height: 100%
 }
 .wrapper:last-child {
   margin-right: 0
+}
+.wrapper--right {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center
+}
+.wrapper .task-text {
+  padding: 0;
+  margin: 0;
+  line-height: 100%
+}
+.icon-edit,
+.icon-important {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 18px;
+  height: 18px
+}
+.btn-edit,
+.btn-important {
+  padding: 0;
+  margin-right: 11px;
+  cursor: pointer;
+  border: none;
+  background: 0 0
 }
 .btn-operation {
   width: -webkit-max-content;
@@ -423,16 +523,83 @@ body {
 .btn-operation:last-child {
   margin-right: 0
 }
+.btn-complited {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  border: none
+}
+.btn-complited:hover {
+  background-color: transparent!important
+}
+.btn-complited svg {
+  width: 18px;
+  height: 18px;
+  -webkit-transition: all linear .3s;
+  -o-transition: all linear .3s;
+  transition: all linear .3s
+}
+.btn-edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s
+}
+.btn-edit svg {
+  display: block;
+  -o-object-fit: cover;
+  object-fit: cover;
+  stroke: #000
+}
+.btn-edit:hover svg {
+  fill: #861f56
+}
+.btn-complited:hover .done {
+  fill: green!important
+}
+.btn-complited:hover .reversal {
+  fill: red!important
+}
+.toggle-svg .reversal {
+  display: block!important
+}
+.toggle-svg .done {
+  display: none
+}
+.btn-delite {
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  border: none
+}
+.btn-delite:hover {
+  background: 0 0!important
+}
+.btn-delite svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  -webkit-transition: all linear .3s;
+  -o-transition: all linear .3s;
+  transition: all linear .3s
+}
+.btn-delite svg:hover {
+  fill: red
+}
+.btn-restore {
+  background: green
+}
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 40px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
   background: #a9a9a9
 }
 .copyright {
@@ -450,6 +617,50 @@ body {
 .copyright p {
   margin: 0
 }
-.priority {
-  font-weight: 600
+.priority svg path {
+  fill: red
+}
+.toggle-theme {
+  cursor: pointer;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: 0 0;
+  border: none;
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s
+}
+.toggle-theme svg {
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s;
+  display: block;
+  width: 37px;
+  height: 37px
+}
+.active-light .toggle-theme__light {
+  fill: #fbe846;
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s;
+  -webkit-transform: rotate(-360deg);
+  -ms-transform: rotate(-360deg);
+  transform: rotate(-360deg)
+}
+.active-night .toggle-theme__night {
+  fill: #2d47b1;
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s;
+  -webkit-transform: rotate(-360deg);
+  -ms-transform: rotate(-360deg);
+  transform: rotate(-360deg)
+}
+.selected {
+  opacity: .6
+}
+.task-text:focus {
+  outline: 0
 }

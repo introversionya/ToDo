@@ -17,15 +17,12 @@
 }
 
 .header__inner {
+  position: relative;
+  padding: 7px 0;
   display: flex;
   align-items: center;
-  user-select: none;
-  padding: 15px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   span {
-    line-height: 0;
+    line-height: 100%;
   }
   img {
     margin-left: 5px;
@@ -34,19 +31,47 @@
   }
 }
 
+.events-count {
+  position: absolute;
+  top: calc(50% - 13px);
+  left: 0;
+  display: flex;
+  p {
+    margin: 0;
+    margin-right: 7px;
+  }
+}
+
+.header__wrapper-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.header__info {
+  position: absolute;
+  top: calc(50% - 13px);
+  right: 0;
+  padding: 3px;
+  max-width: 350px;
+  font-size: 16px;
+}
+
 .main {
   background: #fdebeb;
   min-height: calc(100vh - 55px);
+  transition: all 1s;
 }
 
 .todo {
-  padding: 50px 115px;
+  padding: 50px 220px;
   display: flex;
   justify-content: center;
 }
 
 .todo__app {
-  min-width: 1000px;
+  min-width: 768px;
   padding: 10px;
   border: 1px solid #ff9cac;
   border-radius: 10px;
@@ -69,6 +94,7 @@
 }
 
 .todo__input {
+  overflow: hidden;
   display: flex;
   flex-grow: 1;
   padding: 3px 7px;
@@ -76,9 +102,12 @@
   border-radius: 5px;
   margin-right: 10px;
   font-size: 16px;
-  transition: .5s;
-  &:hover {
+  transition: .2s;
+  &:hover, 
+  &:active,
+  &:focus {
     background: blanchedalmond;
+    transform: scale(1.01)perspective(1px);
   }
   &::placeholder {
     opacity: 0.5;
@@ -86,6 +115,7 @@
 }
 
 .btn {
+  user-select: none;
   cursor: pointer;
   background-color: #d8d8d8;
   display: flex;
@@ -95,8 +125,7 @@
   border-radius: 5px;
   font-size: 16px;
   transition: all linear .3s;
-  &:hover {
-    border: 1px solid rgb(0, 0, 0);
+  &:hover:not([disabled="disabled"]) {
     background-color: #ff9cac;
   }
 }
@@ -106,13 +135,17 @@
   margin: 0;
   list-style: none;
   li {
-    word-break:break-all;
+    padding: 7px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    user-select: text;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 15px;
     position: relative;
     img {
+      user-select: none;
       display: block;
       object-fit: cover;
       margin-right: 5px;
@@ -139,12 +172,57 @@
   display: none;
 }
 
+.todo__tasks-list:hover li::after {
+  display: none;
+}
+
+.todo__tasks-list li:hover {
+  border: 1px solid #ff9cac;
+  border-radius: 5px;
+  background: #fff!important;
+  cursor: grab;
+}
+
+.complited {
+  text-decoration: line-through;
+  text-decoration-color:red;
+}
+
 .wrapper {
+  transition: all .3s;
   display: flex;
+  align-items: flex-start;
   margin-right: 25px;
+  line-height: 100%;
   &:last-child {
     margin-right: 0;
   }
+}
+
+.wrapper--right {
+  align-items: center;
+}
+
+.wrapper .task-text {
+  padding: 0;
+  margin: 0;
+  line-height: 100%;
+}
+
+.icon-important,
+.icon-edit {
+  display: flex;
+  width: 18px;
+  height: 18px;
+}
+
+.btn-important,
+.btn-edit {
+  padding: 0;
+  margin-right: 11px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 .btn-operation {
@@ -155,13 +233,81 @@
   }
 }
 
+.btn-complited {
+  padding: 0;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  &:hover {
+    background-color: transparent!important;
+  }
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: all linear .3s;
+    
+  }
+}
+
+.btn-edit {
+  display: flex;
+  transition: all .3s;
+  svg {
+    display: block;
+    object-fit: cover;
+    stroke: black;
+  }
+}
+
+.btn-edit:hover svg {
+  fill: #861f56;
+}
+
+.btn-complited:hover .done {
+  fill: green !important;
+}
+
+.btn-complited:hover .reversal {
+  fill: red !important;
+}
+
+.toggle-svg {
+  .reversal {
+    display: block!important;
+  }
+  .done {
+    display: none;
+  }
+}
+
+.btn-delite {
+  padding: 0;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  &:hover {
+    background: transparent!important;
+  }
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    transition: all linear .3s;
+    &:hover {
+      fill: red;
+    }
+  }
+}
+
+.btn-restore {
+  background: green;
+}
+
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 40px;
-  user-select: none;
   background: darkgrey;
 }
 
@@ -176,5 +322,42 @@
 }
 
 .priority {
-  font-weight: 600;
+  svg path {
+    fill: red;
+  }
+}
+
+.toggle-theme {
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  background: transparent;
+  border: none;
+  transition: all .9s;
+  svg {
+    transition: all .9s;
+    display: block;
+    width: 37px;
+    height: 37px;
+  }
+}
+
+.active-light .toggle-theme__light {
+  fill: #fbe846;
+  transition: all .9s;
+  transform: rotate(-360deg);
+}
+
+.active-night .toggle-theme__night {
+  fill: #2d47b1;
+  transition: all .9s;
+  transform: rotate(-360deg);
+}
+
+.selected {
+  opacity: 0.6;
+}
+
+.task-text:focus {
+  outline: none;
 }
