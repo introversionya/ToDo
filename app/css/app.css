@@ -2,8 +2,8 @@
 /*! Шрифты для проекта */
 @font-face {
   font-family: Lobster;
-  src: url(/app/fonts/Lobster-Regular.eot);
-  src: url(/app/fonts/Lobster-Regular.eot?#iefix) format("embedded-opentype"),url(/app/fonts/Lobster-Regular.woff2) format("woff2"),url(/app/fonts/Lobster-Regular.woff) format("woff"),url(/app/fonts/Lobster-Regular.ttf) format("truetype"),url(/app/fonts/Lobster-Regular.svg) format("svg")
+  src: url(/fonts/Lobster-Regular.eot);
+  src: url(/fonts/Lobster-Regular.eot?#iefix) format("embedded-opentype"),url(/fonts/Lobster-Regular.woff2) format("woff2"),url(/fonts/Lobster-Regular.woff) format("woff"),url(/fonts/Lobster-Regular.ttf) format("truetype"),url(/fonts/Lobster-Regular.svg) format("svg")
 }
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
