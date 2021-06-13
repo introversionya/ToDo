@@ -72,9 +72,13 @@
 }
 
 .todo {
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
+  // padding: 10px 0;
+  // display: flex;
+  // justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .todo__app {
