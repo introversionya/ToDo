@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*! Шрифты для проекта */
-@import url(https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 html {
   line-height: 1.15;
@@ -197,7 +197,7 @@ img {
 body {
   min-width: 320px;
   position: relative;
-  font-family: 'Akaya Telivigala',cursive;
+  font-family: Lobster,cursive;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
