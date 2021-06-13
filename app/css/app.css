@@ -217,7 +217,7 @@ body {
   background-color: #ff9cac
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #000;
+  background-color: #c0afaf;
   border-radius: 9em
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -675,7 +675,7 @@ body {
     display: none
   }
   .copyright__date {
-    font-size: 14px!important
+    font-size: 11px!important
   }
   .header__inner {
     padding: 20px 0
