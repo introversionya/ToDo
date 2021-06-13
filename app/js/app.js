@@ -7,13 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const headInfo = document.querySelector(".header__info");
   const btnTheme = document.querySelector(".toggle-theme");
 
+  if (localStorage.getItem("marker") === null) {
+    headInfo.innerHTML = "Первая загрузка приложения!)";
+    localStorage.setItem("marker", "yes");
+  }
+
   // Загружаем прогресс из локального хранилища
   function getSave() {
     if (localStorage.getItem("li") !== null) {
       taskList.innerHTML = localStorage.getItem("li");
-    } else {
-      console.log('localStorage.getItem("li") = null');
-      headInfo.innerHTML = 'Первая загрузка приложения!)';
     }
   }
 
@@ -23,8 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let todoInpArr = []; // Переменная хранит значания из input в массиве
 
   btnAdd.addEventListener("click", function () {
-
-    localStorage.removeItem('input'); // При добавлении новой задачи очищаем хранилище инпута
+    localStorage.removeItem("input"); // При добавлении новой задачи очищаем хранилище инпута
 
     todoInpArr.push(todoInp.value); // Пушим в массив текст из input
 
@@ -35,7 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     taskList.innerHTML += `<li class="itemLi" title="Переместить" draggable="true">
 
     <div class="wrapper wrapper--left">
-      <img src="img/task.png" alt="task"><p class="task-text">${todoInpArr[todoInpArr.length - 1]}</p>
+      <img src="img/task.png" alt="task"><p class="task-text">${
+        todoInpArr[todoInpArr.length - 1]
+      }</p>
     </div>
 
     <div class="wrapper wrapper--right">
@@ -151,12 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
    </li>`;
 
-   // Задача добавляется вверх
-  //  document.querySelectorAll('.itemLi').forEach(function(item, i, arr){
-  //   taskList.prepend(item);
-  //  })
-
-  
     function infoAddTask() {
       headInfo.innerHTML = "Задача добавлена";
     }
@@ -172,13 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     complitedTask(); // Запуск функции "решенной задачи"
     highPriority(); // Высокий приоритет задачи
     editTasks(); // Редактирование задачи
-    
-
   }); // Конец функции клик по кнопке добавить задачу
-
-
-
-
 
   // Запрещаем пушить пустую строку и устанавливаем html атрибуты
   function checkInp() {
@@ -194,24 +185,24 @@ document.addEventListener("DOMContentLoaded", function () {
     todoInp.oninput = function (event) {
       // Сохраняем текст из инпута при перезагрузке
       let textInpSave = todoInp.value;
-      localStorage.setItem('input', textInpSave);
+      localStorage.setItem("input", textInpSave);
       checkInp();
     };
   }
 
   // Подставляем текст в инпут из локального хранилища
-  if (localStorage.getItem('input') !== null) {
-    let textGetLocal = localStorage.getItem('input');
+  if (localStorage.getItem("input") !== null) {
+    let textGetLocal = localStorage.getItem("input");
     todoInp.value = textGetLocal;
   }
 
   checkInp();
-  
+
   // Удаление задач
   function removeTask() {
     let btnDel = document.querySelectorAll("#btn-del");
     for (let i = 0; i < btnDel.length; i++) {
-      btnDel[i].addEventListener('click', function(){
+      btnDel[i].addEventListener("click", function () {
         removeLastLi();
         let targetLi = this.closest("li");
         targetLi.remove();
@@ -220,19 +211,19 @@ document.addEventListener("DOMContentLoaded", function () {
         updateLocal();
         headInfo.innerHTML = `Вы удалили задачу ${this.closest("li").id}`;
         startInfoClear();
-      })
+      });
     }
   }
 
   removeTask();
-  
+
   // После удаления последней li чистим localStorage
-  function removeLastLi() {   
+  function removeLastLi() {
     for (let i = 0; i < taskList.childNodes.length; i++) {
       let countLi = res; // Кол-во <li>
       if (countLi === 0) {
         // console.log('Задач больше нет');
-        localStorage.setItem('li', ''); 
+        localStorage.setItem("li", "");
       } else {
         // console.log(`Задач: ${countLi} шт.`);
       }
@@ -272,78 +263,70 @@ document.addEventListener("DOMContentLoaded", function () {
       btnTheme.classList.remove("active-light");
       btnTheme.classList.add("active-night");
       headInfo.innerHTML = "night ON";
-      night =  document.querySelector(".main").style.background = "#a2a2a2";
+      night = document.querySelector(".main").style.backgroundColor = "rgb(121 121 121)";
       startInfoClear();
-      localStorage.setItem('theme', night);
+      localStorage.setItem("theme", night);
     } else {
       btnTheme.classList.remove("active-night");
       btnTheme.classList.add("active-light");
       headInfo.innerHTML = "light ON";
-      light = document.querySelector(".main").style.background = "#fdebeb";
+      light = document.querySelector(".main").style.backgroundColor = "#fdebeb";
       startInfoClear();
-      localStorage.setItem('theme', light);
-    }  
-    themeValue = localStorage.getItem('theme');
+      localStorage.setItem("theme", light);
+    }
+    themeValue = localStorage.getItem("theme");
   });
 
-  if (localStorage.getItem('theme') !== null) {    
+  if (localStorage.getItem("theme") !== null) {
     function insTheme() {
-      if (localStorage.getItem('theme') === "#fdebeb") {          
+      if (localStorage.getItem("theme") === "#fdebeb") {
         document.querySelector(".main").style.background = "#fdebeb";
-        btnTheme.classList.remove('active-night');
-        btnTheme.classList.add('active-light');
+        btnTheme.classList.remove("active-night");
+        btnTheme.classList.add("active-light");
       } else {
         document.querySelector(".main").style.background = "#a2a2a2";
-        btnTheme.classList.remove('active-light');
-        btnTheme.classList.add('active-night');
+        btnTheme.classList.remove("active-light");
+        btnTheme.classList.add("active-night");
       }
     }
     insTheme();
   }
-    
-  
-     
- // Считаем и выводим количество задач
- let res;
- function taskCount() {
-   res = taskList.childElementCount; // Посчитали сколько дочерних элементов в переменной "taskList"
-   countResult.innerHTML = res; // выводим результат в верстку
- }
 
- taskCount();
-
-
-// Отметить задачу как "выполнено"
-function complitedTask() {
-  let btnDo = document.querySelectorAll('#btn-do');
-  for (i = 0; i < btnDo.length; i++) {
-    btnDo[i].addEventListener('click', function(){
-      
-      let targetLi = this.closest("li");
-      targetLi.classList.toggle('complited');
-      this.classList.toggle('toggle-svg');
-
-      if (targetLi.classList[1] === 'complited') {
-        this.setAttribute('title', 'Отметить как "не выполнено"');
-        headInfo.innerHTML = 'Задача выполнена'
-        
-      } else {
-        this.setAttribute('title', 'Отметить как "выполнено"');
-        headInfo.innerHTML = 'Задача  не выполнена'
-        
-      }
-      startInfoClear();
-      updateLocal();
-    })
-    
+  // Считаем и выводим количество задач
+  let res;
+  function taskCount() {
+    res = taskList.childElementCount; // Посчитали сколько дочерних элементов в переменной "taskList"
+    countResult.innerHTML = res; // выводим результат в верстку
   }
-  
-}
 
-complitedTask();
+  taskCount();
+
+  // Отметить задачу как "выполнено"
+  function complitedTask() {
+    let btnDo = document.querySelectorAll("#btn-do");
+    for (i = 0; i < btnDo.length; i++) {
+      btnDo[i].addEventListener("click", function () {
+        let targetLi = this.closest("li");
+        targetLi.classList.toggle("complited");
+        this.classList.toggle("toggle-svg");
+
+        if (targetLi.classList[1] === "complited") {
+          this.setAttribute("title", 'Отметить как "не выполнено"');
+          headInfo.innerHTML = "Задача выполнена";
+        } else {
+          this.setAttribute("title", 'Отметить как "выполнено"');
+          headInfo.innerHTML = "Задача  не выполнена";
+        }
+        startInfoClear();
+        updateLocal();
+      });
+    }
+  }
+
+  complitedTask();
 
   let saveImportTask;
-  
+
   // Добавляем высокий приоритет для задачи и переносим ее к верху
   function highPriority() {
     let btn = document.querySelectorAll(".btn-important");
@@ -352,111 +335,107 @@ complitedTask();
         this.classList.toggle("priority");
         if (btn[i].className === "btn-important priority") {
           let targetLi = this.closest("li");
-          targetLi.style.color = 'green';
-          
-
-          let priority = document.querySelectorAll('.priority');
-          for (let i = 0; i < priority.length; i++) {
-            let targetLi = this.closest("li");
-            saveImportTask = priority;
-            taskList.prepend(targetLi);
-            headInfo.innerHTML = 'Высокий приоритет'
-            targetLi.style.background = 'rgb(183 191 199)';
-            this.setAttribute('title', 'Помечено как "важное"');
-          }
-            
-          
+          targetLi.style.color = "green";
+          let priority = document.querySelectorAll(".priority");
+            for (let i = 0; i < priority.length; i++) {
+              let targetLi = this.closest("li");
+              saveImportTask = priority;
+              taskList.prepend(targetLi);
+              headInfo.innerHTML = "Высокий приоритет";
+              targetLi.style.background = "rgb(183 191 199)";
+              this.setAttribute("title", 'Помечено как "важное"');
+            }
         } else {
           let targetLi = this.closest("li");
-          targetLi.style.color = 'black';
-          headInfo.innerHTML = 'Обычный приоритет'
-          targetLi.style.background = 'transparent';
+          targetLi.style.color = "black";
+          headInfo.innerHTML = "Обычный приоритет";
+          targetLi.style.background = "transparent";
         }
         startInfoClear();
         updateLocal();
       });
     }
   }
-  
+
   highPriority();
 
   // Редактирование задачи
   let textValue;
   function editTasks() {
-    let btnEdit = document.querySelectorAll('.btn-edit');
+    let btnEdit = document.querySelectorAll(".btn-edit");
     for (let i = 0; i < btnEdit.length; i++) {
-      btnEdit[i].addEventListener('click', function(){
-        let childrenText = document.querySelectorAll('.wrapper--left .task-text');
+      btnEdit[i].addEventListener("click", function () {
+        let childrenText = document.querySelectorAll(
+          ".wrapper--left .task-text"
+        );
         childrenText[i].contentEditable = "true";
         childrenText[i].focus();
         textValue = childrenText[i].innerText;
-        childrenText.forEach( function(textValue) {
-          textValue.addEventListener('blur', function(){
-            childrenText[i].contentEditable = "false";  
+        childrenText.forEach(function (textValue) {
+          textValue.addEventListener("blur", function () {
+            childrenText[i].contentEditable = "false";
             updateLocal();
-          })
-        }) 
-      })
+          });
+        });
+      });
     }
-  }  
-  
+  }
+
   editTasks();
+
+  setInterval(setDateFooter, 1000)
+
+  function setDateFooter() {
+    document.querySelector('.copyright__date').textContent = Date();
+  }
 
   // Drag'n'Drop задач
   function liDrag() {
-
-
     taskList.addEventListener(`dragstart`, (event) => {
       event.target.classList.add(`selected`);
-    })
-    
+    });
+
     taskList.addEventListener(`dragend`, (event) => {
       event.target.classList.remove(`selected`);
       spotId();
       updateLocal();
     });
-  
+
     taskList.addEventListener(`dragover`, (event) => {
       // Разрешаем сбрасывать элементы в эту область
       event.preventDefault();
       // Находим перемещаемый элемент
-    const activeElement = taskList.querySelector(`.selected`);
-    // Находим элемент, над которым в данный момент находится курсор
-    const currentElement = event.target;
-    // Проверяем, что событие сработало:
-    // 1. не на том элементе, который мы перемещаем,
-    // 2. именно на элементе списка
-    const isMoveable = activeElement !== currentElement &&
-      currentElement.classList.contains(`itemLi`);
-  
-    // Если нет, прерываем выполнение функции
-    if (!isMoveable) {
-      return;
-    }
-  
-    // Находим элемент, перед которым будем вставлять
-    const nextElement = (currentElement === activeElement.nextElementSibling) ?
-        currentElement.nextElementSibling :
-        currentElement;
-  
-    // Вставляем activeElement перед nextElement
-    taskList.insertBefore(activeElement, nextElement);
-  });
+      const activeElement = taskList.querySelector(`.selected`);
+      // Находим элемент, над которым в данный момент находится курсор
+      const currentElement = event.target;
+      // Проверяем, что событие сработало:
+      // 1. не на том элементе, который мы перемещаем,
+      // 2. именно на элементе списка
+      const isMoveable =
+        activeElement !== currentElement &&
+        currentElement.classList.contains(`itemLi`);
 
+      // Если нет, прерываем выполнение функции
+      if (!isMoveable) {
+        return;
+      }
+
+      // Находим элемент, перед которым будем вставлять
+      const nextElement =
+        currentElement === activeElement.nextElementSibling
+          ? currentElement.nextElementSibling
+          : currentElement;
+
+      // Вставляем activeElement перед nextElement
+      taskList.insertBefore(activeElement, nextElement);
+    });
   }
 
   liDrag();
 
-
-
-
-
-
-  
   // Пушим в localStorage актуальное состояние <li>
   function updateLocal() {
-    let allTasks =  taskList.innerHTML;
-    localStorage.setItem('li', allTasks);
+    let allTasks = taskList.innerHTML;
+    localStorage.setItem("li", allTasks);
   }
-  
 }); // Конец DOMContentLoaded

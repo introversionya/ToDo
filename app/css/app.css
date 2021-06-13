@@ -250,7 +250,8 @@ body {
 .header {
   -webkit-box-shadow: 0 1px #a9a9a9;
   box-shadow: 0 1px #a9a9a9;
-  background: #ff9cac
+  background-color: #000;
+  color: #f0f8ff
 }
 .header__inner {
   position: relative;
@@ -272,7 +273,10 @@ body {
 }
 .events-count {
   position: absolute;
-  top: calc(50% - 13px);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -296,21 +300,33 @@ body {
 }
 .header__info {
   position: absolute;
-  top: calc(50% - 13px);
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 0;
   padding: 3px;
   max-width: 350px;
   font-size: 16px
 }
 .main {
-  background: #fdebeb;
-  min-height: calc(100vh - 55px);
-  -webkit-transition: all 1s;
-  -o-transition: all 1s;
-  transition: all 1s
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #fdebeb;
+  height: calc(100vh - 96px);
+  -webkit-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s
 }
 .todo {
-  padding: 50px 220px;
+  padding: 10px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -319,14 +335,27 @@ body {
   justify-content: center
 }
 .todo__app {
-  min-width: 768px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border-radius: 10px;
+  max-width: 1920px;
+  width: 100%;
+  max-height: calc(100vh - 155px);
   padding: 10px;
   border: 1px solid #ff9cac;
-  border-radius: 10px
+  background-color: #000
 }
 .todo__title {
   text-align: center;
   margin-bottom: 10px
+}
+.todo__title span {
+  color: #f0f8ff
 }
 .todo__add-task {
   display: -webkit-box;
@@ -336,8 +365,7 @@ body {
 }
 .todo__tasks {
   overflow-y: auto;
-  padding-right: 10px;
-  height: 340px
+  padding-right: 10px
 }
 .todo__input {
   overflow: hidden;
@@ -349,7 +377,7 @@ body {
   flex-grow: 1;
   padding: 3px 7px;
   border: 1px solid #ff9cac;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-right: 10px;
   font-size: 16px;
   -webkit-transition: .2s;
@@ -395,7 +423,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid #ff9cac;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 16px;
   -webkit-transition: all linear .3s;
   -o-transition: all linear .3s;
@@ -405,11 +433,14 @@ body {
   background-color: #ff9cac
 }
 .todo__tasks-list {
+  width: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
   list-style: none
 }
 .todo__tasks-list li {
+  background-color: bisque;
   padding: 7px;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -600,7 +631,9 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #a9a9a9
+  min-height: 57px;
+  background-color: #000;
+  color: #f0f8ff
 }
 .copyright {
   padding: 10px;
@@ -615,7 +648,33 @@ body {
   align-items: center
 }
 .copyright p {
-  margin: 0
+  font-size: 16px;
+  margin: 0;
+  margin-left: 20px
+}
+@media screen and (max-width:576px) {
+  .events-count,
+  .header__info,
+  .header__wrapper-logo {
+    font-size: 16px
+  }
+  .todo__tasks-list li img {
+    display: none
+  }
+}
+@media screen and (max-width:450px) {
+  .header {
+    height: 39px
+  }
+  .header__wrapper-logo {
+    display: none
+  }
+  .copyright__date {
+    font-size: 14px!important
+  }
+  .header__inner {
+    padding: 20px 0
+  }
 }
 .priority svg path {
   fill: red
@@ -638,7 +697,8 @@ body {
   transition: all .9s;
   display: block;
   width: 37px;
-  height: 37px
+  height: 37px;
+  fill: #f0f8ff
 }
 .active-light .toggle-theme__light {
   fill: #fbe846;
