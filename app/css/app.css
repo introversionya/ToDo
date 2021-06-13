@@ -675,7 +675,8 @@ body {
     display: none
   }
   .copyright__date {
-    font-size: 11px!important
+    font-size: 11px!important;
+    display: none
   }
   .header__inner {
     padding: 20px 0
